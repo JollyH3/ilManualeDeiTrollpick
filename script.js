@@ -1,1 +1,1 @@
-$('.parallax-window').parallax({imageSrc: './assets/img/bg.png', speed: 0.4});
+$('.parallax-window').parallax({imageSrc: './assets/img/bg.webp', speed: 0.4});
