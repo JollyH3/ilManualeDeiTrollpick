@@ -18,7 +18,7 @@
                     <a class="nav-link text-uppercase fw-bold" aria-current="page" href="../duoTrollpick/index.php">Trollpick in duo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase fw-bold" aria-current="page" href="#">Archivio</a>
+                    <a class="nav-link text-uppercase fw-bold" aria-current="page" href="../archive/index.php">Archivio</a>
                 </li>
             </ul>
         </div>

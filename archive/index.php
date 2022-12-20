@@ -1,6 +1,6 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-define("PAGE_TITLE", "Trollpick in Duo");
+define("PAGE_TITLE", "archivio");
 define("PAGE_SUBTITLE", "");
 ?>
 <!DOCTYPE html>
