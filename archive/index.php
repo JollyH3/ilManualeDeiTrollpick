@@ -26,4 +26,7 @@ define("PAGE_SUBTITLE", "");
 
         </div>
     </div>
+
+    <?php include "includes/components/structure/footer.php"; ?>
+
 </body>

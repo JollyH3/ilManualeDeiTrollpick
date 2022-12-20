@@ -38,12 +38,14 @@ define("PAGE_SUBTITLE", "");
                 <?php $data = file_get_contents("../data/champions.JSON");
                     for ($i = 0; $i < count(json_decode($data, true)); $i++):
                     ?>
-                        <div class="card border-0 m-2 mb-4 bg-transparent" style="width: 10rem;">
-                            <img src="<?php echo json_decode($data, true)[$i]["portrait"]; ?>" class="card-img-top rounded" alt="<?php echo json_decode($data, true)[$i]["name"]; ?>">
-                            <div class="card-body bg-dark p-2">
-                                <p class="card-text text-white text-center text-uppercase fw-bold fs-5"><?php echo json_decode($data, true)[$i]["name"]; ?></p>
+                        <a class="text-decoration-none" href="#<?php echo $i?>">
+                            <div class="card border-0 m-2 mb-4 bg-transparent" style="width: 10rem;">
+                                <img src="<?php echo json_decode($data, true)[$i]["portrait"]; ?>" class="card-img-top rounded" alt="<?php echo json_decode($data, true)[$i]["name"]; ?>">
+                                <div class="card-body bg-dark p-2">
+                                    <p class="card-text text-white text-center text-uppercase fw-bold fs-5"><?php echo json_decode($data, true)[$i]["name"]; ?></p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                 <?php endfor;?>
             </div>
 
@@ -54,8 +56,7 @@ define("PAGE_SUBTITLE", "");
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
-<script src="../script.js"></script>
+    <?php include "includes/components/structure/footer.php"; ?>
+
 </body>
 </html>

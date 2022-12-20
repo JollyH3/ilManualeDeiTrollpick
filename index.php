@@ -77,6 +77,9 @@ define("PAGE_SUBTITLE", "by Jolly & Iacca");
         </div>
 
     </div>
+
+    <?php include "includes/components/structure/footer.php"; ?>
+
 </body>
 </html>
 
