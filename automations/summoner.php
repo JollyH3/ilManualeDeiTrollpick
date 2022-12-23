@@ -15,7 +15,7 @@ foreach ($data as $summoner) {
 
     $stmt = $pdo->prepare("INSERT IGNORE INTO summoner VALUES(:summoner_id, :name, :description, :cooldown, :image, :version);");
     $stmt->execute([
-        'summoner:id' => intval($summoner['key']),
+        'summoner_id' => $summoner['id'],
         'name' => $summoner['name'],
         'description' => $summoner['description'],
         'cooldown' => json_encode($summoner['cooldown']),

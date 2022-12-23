@@ -3,6 +3,7 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 
 define("PAGE_TITLE", "Trollpick in Solo");
 define("PAGE_SUBTITLE", "");
+include "../getData.php";
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -35,14 +36,14 @@ define("PAGE_SUBTITLE", "");
             <br><hr><br>
             <!-- champions list -->
             <div class="d-flex flex-wrap justify-content-center" >
-                <?php $data = file_get_contents("../data/champions.JSON");
-                    for ($i = 0; $i < count(json_decode($data, true)); $i++):
+                <?php $data = getData("trollpick", "champion", "name, image", "name");
+                    for ($i = 0; $i < count($data); $i++):
                     ?>
                         <a class="text-decoration-none" href="#<?=$i?>" >
                             <div class="card border-0 m-2 mb-4 bg-transparent" style="width: 10rem;">
-                                <img src="<?=json_decode($data, true)[$i]["portrait"]?>" class="card-img-top rounded" alt="<?php echo json_decode($data, true)[$i]["name"]; ?>">
+                                <img src="<?=$data[$i]["image"]?>" class="card-img-top rounded" alt="<?=$data[$i]["name"]?>">
                                 <div class="card-body bg-dark p-2">
-                                    <p class="card-text text-white text-center text-uppercase fw-bold fs-5"><?php echo json_decode($data, true)[$i]["name"]; ?></p>
+                                    <p class="card-text text-white text-center text-uppercase fw-bold fs-5"><?=$data[$i]["name"]?></p>
                                 </div>
                             </div>
                         </a>
