@@ -25,8 +25,8 @@ define("PAGE_SUBTITLE", "");
                     Ovviamente qui troverete solo i trollpick aggioranti e funzionanti per la stagione attuale.
                     Per i trollpick più vecchi, potete trovarli nella sezione <span class="text-danger fw-bold">Archivio</span>.
                     Se volete contribure a migliorare il sito potete inviarci dei trollpick che avete ideato voi o dei pick che
-                    ci siamo persi di <span class="text-success">Fierik</span> potete farlo tramite il form nella sezione
-                    <span class="text-info fw-bold">Contatti</span>.
+                    ci siamo persi di <span class="text-success">Fierik</span> potete farlo tramite il form
+                    <span class="text-info fw-bold">Consiglia Trollpick</span>.
                 </p>
             </div>
             <div class="col-md-6">
@@ -38,9 +38,9 @@ define("PAGE_SUBTITLE", "");
                 <?php $data = file_get_contents("../data/champions.JSON");
                     for ($i = 0; $i < count(json_decode($data, true)); $i++):
                     ?>
-                        <a class="text-decoration-none" href="#<?php echo $i?>">
+                        <a class="text-decoration-none" href="#<?=$i?>" >
                             <div class="card border-0 m-2 mb-4 bg-transparent" style="width: 10rem;">
-                                <img src="<?php echo json_decode($data, true)[$i]["portrait"]; ?>" class="card-img-top rounded" alt="<?php echo json_decode($data, true)[$i]["name"]; ?>">
+                                <img src="<?=json_decode($data, true)[$i]["portrait"]?>" class="card-img-top rounded" alt="<?php echo json_decode($data, true)[$i]["name"]; ?>">
                                 <div class="card-body bg-dark p-2">
                                     <p class="card-text text-white text-center text-uppercase fw-bold fs-5"><?php echo json_decode($data, true)[$i]["name"]; ?></p>
                                 </div>

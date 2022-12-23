@@ -1,10 +1,10 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-define("PAGE_TITLE", "archivio");
+
+define("PAGE_TITLE", "Consiglia un Trollpick");
 define("PAGE_SUBTITLE", "");
 ?>
-<!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
     <?php include "includes/components/structure/head.php"; ?>
 </head>
@@ -17,8 +17,8 @@ define("PAGE_SUBTITLE", "");
     <div class="container mt-5 text-white">
         <div class="row">
                 <p class="lead">
-                    Questa sezione riguarda tutti i trollpick di <span class="text-success">Fierik</span> Archiviati.
-                    Probabilemente questi pick non andranno bene per la versione attuale del gioco.
+                    In questa sezione potete consigliare un trollpick che avete ideato voi, che avete visto in una partita
+                    o che ci siamo persi noi.
                 </p>
 
             <?php include "includes/components/structure/main/bottom.php"; ?>
@@ -28,4 +28,6 @@ define("PAGE_SUBTITLE", "");
 
     <?php include "includes/components/structure/footer.php"; ?>
 
+
 </body>
+</html>
