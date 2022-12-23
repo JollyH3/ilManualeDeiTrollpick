@@ -42,6 +42,6 @@ function getColumns($database, $table){
     return $dataOut;
 }
 /*
-$myData = getData("trollpick", "champion", "image, name");
+$myData = getData("trollpick", "rune", "everything", "name");
 print_r($myData);
 */

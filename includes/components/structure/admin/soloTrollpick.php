@@ -1,12 +1,19 @@
-<div class="input-group bg-dark text-muted">
-    <input type="text" class="form-control bg-dark text-muted" aria-label="Text input with segmented dropdown button" placeholder="Nome Trollpick">
-    <button type="button" class="btn btn-outline-secondary">Action</button>
+<html>
+<head>
+    <?php include "includes/components/structure/head.php"; ?>
+    <script src="includes/components/structure/main/script.js"></script>
+</head>
+<body class="bg-black">
+<div class="container pt-3">
+<div>
+    <div class="input-group bg-dark text-muted mb-3">
+    <input type="text" class="form-control bg-dark text-muted" aria-label="Text input with segmented dropdown button" placeholder="Nome Trollpick" id="title">
     <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
         <span class="visually-hidden">Toggle Dropdown</span>
     </button>
     <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" href="<?=$_GET['key'] . '&hash=1' ?>">Solo</a></li>
-        <li><a class="dropdown-item" href="<?=$_GET['key'] . '&hash=2' ?>">Duo</a></li>
+        <li><a class="dropdown-item" href="<?= "?key=" . $_GET['key'] . '&hash=1' ?>">Solo</a></li>
+        <li><a class="dropdown-item" href="<?= "?key=" . $_GET['key'] . '&hash=2' ?>">Duo</a></li>
     </ul>
 </div>
 <div class="accordion" id="accordionExample">
@@ -22,7 +29,7 @@
                     <?php $data = getData("trollpick", "champion", "name, image" , "name");
                     for ($i = 0; $i < count($data); $i++):
                         ?>
-                        <a class="text-decoration-none" href="#<?php echo $i?>">
+                        <a id="<?=$data[$i]["name"]?>" onclick="catchChampion('<?=$data[$i]["name"]?>')">
                             <div class="card border-0 m-1 mb-1 bg-transparent" style="width: 4rem;">
                                 <img src="<?=$data[$i]["image"]?>" class="card-img-top rounded" alt="<?=$data[$i]["name"]?>">
                                 <div class="card-body bg-dark p-1">
@@ -44,20 +51,20 @@
         <div id="collapseTwo" class="accordion-collapse collapse bg-dark text-muted" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <div class="d-flex flex-wrap justify-content-center">
-                    <div class="m-2">
-                        <img src="assets/img/top.png" alt="top">
+                    <div class="m-2" id="top">
+                        <img src="assets/img/top.png" alt="top" onclick="catchRole('top')">
                     </div>
-                    <div class="m-2">
-                        <img src="assets/img/jungle.png" alt="jungle">
+                    <div class="m-2" id="jungle">
+                        <img src="assets/img/jungle.png" alt="jungle" onclick="catchRole('jungle')">
                     </div>
-                    <div class="m-2">
-                        <img src="assets/img/mid.png" alt="mid">
+                    <div class="m-2" id="mid">
+                        <img src="assets/img/mid.png" alt="mid" onclick="catchRole('mid')">
                     </div>
-                    <div class="m-2">
-                        <img src="assets/img/bot.png" alt="bot">
+                    <div class="m-2" id="bot">
+                        <img src="assets/img/bot.png" alt="bot" onclick="catchRole('bot')">
                     </div>
-                    <div class="m-2">
-                        <img src="assets/img/support.png" alt="support">
+                    <div class="m-2" id="support">
+                        <img src="assets/img/support.png" alt="support" onclick="catchRole('support')">
                     </div>
                 </div>
             </div>
@@ -71,8 +78,20 @@
         </h2>
         <div id="collapseThree" class="accordion-collapse collapse bg-dark text-muted" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-
-
+                <div class="d-flex flex-wrap justify-content-center" >
+                    <?php $data = getData("trollpick", "rune", "name, image" , "category, position");
+                    for ($i = 0; $i < count($data); $i++):
+                        ?>
+                        <a class="text-decoration-none" href="#<?php echo $i?>">
+                            <div class="card border-0 m-1 mb-1 bg-transparent" style="width: 4rem;">
+                                <img src="<?=$data[$i]["image"]?>" class="card-img-top rounded" alt="<?=$data[$i]["name"]?>">
+                                <div class="card-body bg-dark p-1">
+                                    <p class="card-text text-white text-center text-uppercase fw-bold" style="font-size: 8px"><?=$data[$i]["name"]?></p>
+                                </div>
+                            </div>
+                        </a>
+                    <?php endfor;?>
+                </div>
             </div>
         </div>
     </div>
@@ -171,5 +190,9 @@
 </div>
 <div class="d-grid gap-2 mt-4">
     <button class="btn btn-primary bg-dark text-uppercase text-muted" type="button">Aggiungi</button>
-    <button class="btn btn-primary bg-dark text-uppercase text-muted" type="button">Indietro</button>
+    <a class="btn btn-primary bg-dark text-uppercase text-muted" type="button" href="index.php">Indietro</a>
 </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
