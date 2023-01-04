@@ -17,7 +17,7 @@ function getData($database, $table, $data, $order){
         return $dataOut;
     }else{
         $columns = getColumns($database, $table);
-        $sql = "SElECT * FROM $table";
+        $sql = "SElECT * FROM $table ORDER BY $order";
         $result = $conn->query($sql);
         $dataOut = $result->fetch_all(MYSQLI_ASSOC);
         /*
@@ -41,7 +41,21 @@ function getColumns($database, $table){
     }
     return $dataOut;
 }
+
+function getImage($data, $table, $id,  $summoner_id){
+    $conn = new mysqli("localhost", "root", "", "trollpick");
+    $sql = "SELECT $data FROM `$table` WHERE $id = '$summoner_id'";
+    $result = $conn->query($sql);
+    $image = $result->fetch_all(MYSQLI_ASSOC);
+    return $image[0]["$data"];
+
+}
+
 /*
-$myData = getData("trollpick", "rune", "everything", "name");
+$myData = getData("trollpick", "trollpick", "everything", "name");
 print_r($myData);
+*/
+/*
+$myImage = getImage("passive", "champion", "champion_id", 1);
+print_r($myImage);
 */
