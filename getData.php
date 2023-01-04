@@ -48,7 +48,13 @@ function getImage($data, $table, $id,  $summoner_id){
     $result = $conn->query($sql);
     $image = $result->fetch_all(MYSQLI_ASSOC);
     return $image[0]["$data"];
+}
 
+function getRune($rune_id) {
+    $conn = new mysqli("localhost", "root", "", "trollpick");
+    $sql = "SELECT * FROM rune WHERE rune_id=\"" . mysqli_escape_string($conn, $rune_id) . "\"";
+    $result = $conn->query($sql);
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 /*

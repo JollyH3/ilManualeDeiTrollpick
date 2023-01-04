@@ -208,7 +208,7 @@ $spells_key = ['Q', 'W', 'E', 'R'];
 					<div class="card-body">
 						<h5 class="text-warning-emphasis fw-bold mb-4">
 							<span class="badge bg-warning-subtle">
-								Passiva
+								P
 							</span>
 							<?=json_decode($data['passive'], true)['name'];?>
 						</h5>
