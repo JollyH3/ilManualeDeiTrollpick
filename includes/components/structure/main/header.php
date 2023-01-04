@@ -9,19 +9,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active text-uppercase fw-bold" aria-current="page" href="../index.php">Home Page</a>
+                    <a class="nav-link active text-uppercase fw-bold" aria-current="page" href="/index.php">Home Page</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase fw-bold" aria-current="page" href="../soloTrollpick/index.php">Trollpick in solo</a>
+                    <a class="nav-link text-uppercase fw-bold" aria-current="page" href="/soloTrollpick/index.php">Trollpick in solo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase fw-bold" aria-current="page" href="../duoTrollpick/index.php">Trollpick in duo</a>
+                    <a class="nav-link text-uppercase fw-bold" aria-current="page" href="/duoTrollpick/index.php">Trollpick in duo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase fw-bold" aria-current="page" href="../recommendsTrollpick/index.php">Consiglia trollpick</a>
+                    <a class="nav-link text-uppercase fw-bold" aria-current="page" href="/recommendsTrollpick/index.php">Consiglia trollpick</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase fw-bold" aria-current="page" href="../archive/index.php">Archivio</a>
+                    <a class="nav-link text-uppercase fw-bold" aria-current="page" href="/archive/index.php">Archivio</a>
                 </li>
             </ul>
         </div>
