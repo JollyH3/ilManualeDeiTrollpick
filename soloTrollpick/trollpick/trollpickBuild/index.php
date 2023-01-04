@@ -20,7 +20,9 @@ $rune = getData("trollpick", "rune", "image", "rune_id");
         <div class="parallax-window mt-5" data-parallax="scroll">
             <div class="d-flex flex-column justify-content-center" style="height: 50vh;">
                 <div class="py-5 w-100 text-center">
-                    <h1 class="display-1 fw-bold text-white text-uppercase mt-5"><?=getImage("name", "champion", "champion_id", "" . $data[0]['champion_id']) . " " . $data[0]["name"]?></h1>
+                    <h1 class="display-1 fw-bold text-white text-uppercase mt-5">
+                        <?=getImage("name", "champion", "champion_id", "" . $data[0]['champion_id']) . " " . $data[0]["name"]?>
+                    </h1>
                 </div>
             </div>
         </div>
@@ -91,7 +93,10 @@ $rune = getData("trollpick", "rune", "image", "rune_id");
                     </div>
                 <?php endfor;?>
             </div>
+            <?php parse_str(parse_url($data['0']['uncut'])['query'], $out);?>
+            <iframe width="560" height="315" src="<?="https://www.youtube.com/embed/" . $out['v']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+        <?php include "includes/components/structure/main/bottom.php"; ?>
     </div>
 </body>
 </html>

@@ -116,15 +116,27 @@ $trollpick = getData("trollpick", "trollpick", "everything", "champion_id, name"
             <hr>
             <br>
             <h4 class="text-uppercase">Abilità</h4>
-            <div class="passive mt-4">
-                <h5><?=json_decode($data['passive'], true)['name']?></h5>
-                <img src="<?="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/passive/" . json_decode($data['passive'], true)["image"]['full']?>" alt="">
-                <p><?=json_decode($data["passive"], true)['description']?></p>
-            </div>
-            <div class="Q">
-                <h5><?=json_decode($data['spells'], true)[0]['id']?></h5>
-                <img src="<?="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/spell/" . json_decode($data['spells'], true)[0]['image']['full']?>" alt="<?=json_decode($data['spells'], true)[0]['image']['full']?>">
-                <p><?=json_decode($data["passive"], true)['description']?></p>
+            <div class="">
+                <div class="passive mt-4">
+                    <h5><?=json_decode($data['passive'], true)['name']?></h5>
+                    <img src="<?="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/passive/" . json_decode($data['passive'], true)["image"]['full']?>" alt="">
+                    <p><?=json_decode($data["passive"], true)['description']?></p>
+                </div>
+                <?php for($i = 0; $i < 4; $i++): ?>
+                    <div class="card mb-5 bg-dark shadow border-none">
+                        <div class="card-body">
+                            <h5><?=json_decode($data['spells'], true)[$i]['name']?></h5>
+                            <div class="d-flex <?="spell_" . $i?>">
+                                <div class="flex-shrink-0">
+                                    <img src="<?="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/spell/" . json_decode($data['spells'], true)[$i]['image']['full']?>" alt="<?=json_decode($data['spells'], true)[0]['image']['full']?>">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <?=json_decode($data["spells"], true)[$i]['description']?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endfor;?>
             </div>
         </div>
 
