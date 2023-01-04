@@ -35,11 +35,11 @@ include "../getData.php";
             </div>
             <br><hr><br>
             <!-- champions list -->
-            <div class="d-flex flex-wrap justify-content-center" >
-                <?php $data = getData("trollpick", "champion", "name, image", "name");
+            <div class="d-flex flex-wrap justify-content-center">
+                <?php $data = getData("trollpick", "champion", "name, image, champion_id", "name");
                     for ($i = 0; $i < count($data); $i++):
                     ?>
-                        <a class="text-decoration-none" href="#<?=$i?>" >
+                        <a class="text-decoration-none" href="<?='trollpick/index.php?id=' . $i?>">
                             <div class="card border-0 m-2 mb-4 bg-transparent" style="width: 10rem;">
                                 <img src="<?=$data[$i]["image"]?>" class="card-img-top rounded" alt="<?=$data[$i]["name"]?>">
                                 <div class="card-body bg-dark p-2">
@@ -54,7 +54,6 @@ include "../getData.php";
 
         </div>
     </div>
-
 
 
     <?php include "includes/components/structure/footer.php"; ?>

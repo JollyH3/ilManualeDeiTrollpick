@@ -20,7 +20,7 @@ define("PAGE_SUBTITLE", "by Jolly & Iacca");
         <div class="container mt-5 text-white">
             <p class="text-end fw-semibold text-break">
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                ULTIMO AGGIORNAMENTO: NOVEMBRE 2021
+                ULTIMO AGGIORNAMENTO: DICEMBRE 2022
             </p>
             <div class="row">
                 <div class="col-md-6">

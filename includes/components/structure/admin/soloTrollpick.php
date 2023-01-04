@@ -26,10 +26,10 @@
         <div id="collapseOne" class="accordion-collapse collapse bg-dark text-muted" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <div class="d-flex flex-wrap justify-content-center" >
-                    <?php $data = getData("trollpick", "champion", "name, image" , "name");
+                    <?php $data = getData("trollpick", "champion", "name, image, champion_id" , "name");
                     for ($i = 0; $i < count($data); $i++):
                         ?>
-                        <a id="<?=$data[$i]["name"]?>" onclick="catchChampion('<?=$data[$i]["name"]?>')">
+                        <a id="<?="champion_" . $data[$i]["champion_id"]?>" onclick="catchChampion('<?=$data[$i]["champion_id"]?>')">
                             <div class="card border-0 m-1 mb-1 bg-transparent" style="width: 4rem;">
                                 <img src="<?=$data[$i]["image"]?>" class="card-img-top rounded" alt="<?=$data[$i]["name"]?>">
                                 <div class="card-body bg-dark p-1">
@@ -45,7 +45,7 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingTwo">
             <button class="accordion-button collapsed bg-dark text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Role
+                Lane
             </button>
         </h2>
         <div id="collapseTwo" class="accordion-collapse collapse bg-dark text-muted" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -78,20 +78,7 @@
         </h2>
         <div id="collapseThree" class="accordion-collapse collapse bg-dark text-muted" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <div class="d-flex flex-wrap justify-content-center" >
-                    <?php $data = getData("trollpick", "rune", "name, image" , "category, position");
-                    for ($i = 0; $i < count($data); $i++):
-                        ?>
-                        <a class="text-decoration-none" href="#<?php echo $i?>">
-                            <div class="card border-0 m-1 mb-1 bg-transparent" style="width: 4rem;">
-                                <img src="<?=$data[$i]["image"]?>" class="card-img-top rounded" alt="<?=$data[$i]["name"]?>">
-                                <div class="card-body bg-dark p-1">
-                                    <p class="card-text text-white text-center text-uppercase fw-bold" style="font-size: 8px"><?=$data[$i]["name"]?></p>
-                                </div>
-                            </div>
-                        </a>
-                    <?php endfor;?>
-                </div>
+                <?php include "includes/components/structure/main/chargeRune.php"?>
             </div>
         </div>
     </div>
@@ -105,10 +92,10 @@
             <div class="accordion-body">
                 <div class="d-flex flex-wrap justify-content-center" >
                     <?php
-                    $data = getData("trollpick", "summoner", "name, image", "name");
+                    $data = getData("trollpick", "summoner", "name, image, summoner_id", "name");
                     for($i = 0; $i < count($data); $i++):
                         ?>
-                        <a class="text-decoration-none" href="#<?php echo $i?>">
+                        <a id="<?=$data[$i]["summoner_id"]?>" class="text-decoration-none" onclick="catchSummoner('<?=$data[$i]["summoner_id"]?>')">
                             <div class="card border-0 m-1 mb-1 bg-transparent" style="width: 4rem;">
                                 <img src="<?=$data[$i]["image"]?>" class="card-img-top rounded" alt="<?=$data[$i]["name"]?>">
                                 <div class="card-body bg-dark p-1">
@@ -130,10 +117,10 @@
         <div id="collapseFive" class="accordion-collapse collapse bg-dark text-muted" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <div class="d-flex flex-wrap justify-content-center" >
-                    <?php $data = getData("trollpick", "item", "name, image", "item_id");
+                    <?php $data = getData("trollpick", "item", "name, image, item_id", "item_id");
                     for($i = 0; $i < count($data); $i++):
                         ?>
-                        <a class="text-decoration-none" href="#<?php echo $i?>">
+                        <a id="<?='item_' . $data[$i]['item_id']?>" class="text-decoration-none" onclick="catchItem('<?=$data[$i]["item_id"]?>')">
                             <div class="card border-0 m-1 mb-1 bg-transparent" style="width: 4rem;">
                                 <img src="<?=$data[$i]["image"]?>" class="card-img-top rounded" alt="<?=$data[$i]["name"] ?>">
                                 <div class="card-body bg-dark p-1">
@@ -154,44 +141,23 @@
         </h2>
         <div id="collapseSix" class="accordion-collapse collapse bg-dark text-muted" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <select class="form-select form-select-sm bg-dark text-muted" aria-label=".form-select-sm example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">Q</option>
-                    <option value="2">W</option>
-                    <option value="3">E</option>
+                <?php for ($i = 0; $i < 5; $i++): ?>
+                <select id="<?="spell_" . $i?>" class="form-select form-select-sm bg-dark text-muted mt-2" aria-label=".form-select-sm example">
+                    <option selected>Seleziona una spell:</option>
+                    <option value="Q">Q</option>
+                    <option value="W">W</option>
+                    <option value="E">E</option>
                 </select>
-                <select class="form-select form-select-sm bg-dark text-muted mt-2" aria-label=".form-select-sm example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">Q</option>
-                    <option value="2">W</option>
-                    <option value="3">E</option>
-                </select>
-                <select class="form-select form-select-sm bg-dark text-muted mt-2" aria-label=".form-select-sm example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">Q</option>
-                    <option value="2">W</option>
-                    <option value="3">E</option>
-                </select>
-                <select class="form-select form-select-sm bg-dark text-muted mt-2" aria-label=".form-select-sm example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">Q</option>
-                    <option value="2">W</option>
-                    <option value="3">E</option>
-                </select>
-                <select class="form-select form-select-sm bg-dark text-muted mt-2" aria-label=".form-select-sm example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">Q</option>
-                    <option value="2">W</option>
-                    <option value="3">E</option>
-                </select>
+                <?php endfor;?>
             </div>
         </div>
     </div>
 </div>
 <div class="d-grid gap-2 mt-4">
-    <button class="btn btn-primary bg-dark text-uppercase text-muted" type="button">Aggiungi</button>
+    <button class="btn btn-primary bg-dark text-uppercase text-muted" type="submit" onclick="saveData()">Aggiungi</button>
     <a class="btn btn-primary bg-dark text-uppercase text-muted" type="button" href="index.php">Indietro</a>
 </div>
+    <p class="text-danger mt-2 text.uppercase fs-4" id="error"></p>
 </div>
     <script src="script.js"></script>
 </body>
