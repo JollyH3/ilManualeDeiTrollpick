@@ -21,13 +21,14 @@ $data = [
     "spell" => $myData['spell'],
 ];
 
-$stmt = $pdo->prepare("INSERT INTO trollpick VALUES(:trollpick_id, :champion_id, :author, :name, :data, :view_count, :is_archived);");
+$stmt = $pdo->prepare("INSERT INTO trollpick VALUES(:trollpick_id, :champion_id, :author, :name, :data, :uncut, :view_count, :is_archived);");
 $stmt->execute([
     'trollpick_id' => hash_hmac("sha256", uniqid(), "trollpick_id"),
     'champion_id' => $myData['champion'],
     'author' => "Fierik",
     'name' => $myData['name'],
     'data' => json_encode($data),
+    'uncut' => "",
     'view_count' => 0,
     'is_archived' => 0,
 ]);
