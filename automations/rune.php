@@ -1,5 +1,5 @@
 <?php
-$data = file_get_contents("http://ddragon.leagueoflegends.com/cdn/10.16.1/data/it_IT/runesReforged.json");
+$data = file_get_contents("http://ddragon.leagueoflegends.com/cdn/12.23.1/data/it_IT/runesReforged.json");
 $data = json_decode($data, true);
 
 $pdo = new PDO("mysql:host=localhost;dbname=trollpick", "root", "");
