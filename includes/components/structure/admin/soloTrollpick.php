@@ -90,7 +90,7 @@
         </h2>
         <div id="collapseFour" class="accordion-collapse collapse bg-dark text-muted" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <div class="d-flex flex-wrap justify-content-center" >
+                <div class="d-flex flex-wrap justify-content-center">
                     <?php
                     $data = getData("trollpick", "summoner", "name, image, summoner_id", "name");
                     for($i = 0; $i < count($data); $i++):

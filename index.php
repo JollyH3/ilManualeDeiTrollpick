@@ -11,7 +11,7 @@ define("PAGE_SUBTITLE", "by Jolly & Iacca");
 <body class="bg-dark">
     <div class="fixed-top bg-black">
         <div class="text-white text-center pt-3">
-          <h6 class="py-2">📝 PATCH 2.4 ✨</h6>
+          <h6 class="py-2">📝 VERSIONE 1.0 ✨</h6>
         </div>
         <?php include "includes/components/structure/main/header.php"; ?>
     </div>

@@ -65,3 +65,4 @@ print_r($myData);
 $myImage = getImage("passive", "champion", "champion_id", 1);
 print_r($myImage);
 */
+

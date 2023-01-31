@@ -1,3 +1,4 @@
+//function for soloTrollpick
 let trollpick = {
     name: "",
     champion: "",
@@ -26,7 +27,7 @@ function catchChampion(champion){
 }
 
 function catchRole(role){
-    
+
         document.getElementById(role).style.border = "4px solid green";
         let exRole = trollpick.lane;
         trollpick.lane = role;
@@ -208,5 +209,128 @@ function checkSpell(spell){
         return spell;
     }else {
         return spell
+    }
+}
+
+//function for duoTrollpick
+
+let duoTrollpick = [{
+    name: "",
+    champion: "",
+    lane: "",
+    rune: "",
+    sBonus: "",
+    summoner: "",
+    item: "",
+    spell: ""
+}, {
+    name: "",
+    champion: "",
+    lane: "",
+    rune: "",
+    sBonus: "",
+    summoner: "",
+    item: "",
+    spell: ""
+}];
+let championP = 0;
+let full = 0;
+
+function catchDuoChampion(champion) {
+    if (full) {
+
+    } else {
+        document.getElementById("champion_" + champion).style.border = "4px solid green";
+        if (championP == 0) {
+            championP++;
+            duoTrollpick[0].champion = champion;
+            document.getElementById("champion_" + champion).setAttribute("onclick", "deselectDuoChampion(" + champion + ")");
+        } else {
+            championP--;
+            duoTrollpick[1].champion = champion
+            document.getElementById("champion_" + champion).setAttribute("onclick", "deselectDuoChampion(" + champion + ")");
+            full = 1;
+        }
+    }
+}
+function deselectDuoChampion(champion){
+    full = 0
+    document.getElementById("champion_" + champion).style.border = "none";
+    document.getElementById("champion_" + champion).setAttribute("onclick", "catchDuoChampion(" + champion + ")");
+    if (duoTrollpick[0].champion == champion){
+        duoTrollpick[0].champion = "";
+        championP = 0;
+    }else if(duoTrollpick[1].champion == champion){
+        duoTrollpick[1].champion = "";
+        championP = 1;
+    }
+}
+
+let laneP = 0;
+let laneFull;
+
+function catchDuoLane(lane) {
+    if (laneFull) {
+    } else {
+        document.getElementById(lane).style.border = "4px solid green";
+        if (laneP == 0) {
+            laneP++;
+            duoTrollpick[0].lane = lane;
+            document.getElementById(lane).setAttribute("onclick", "deselectDuoLane('" + lane + "')");
+        } else {
+            laneP--;
+            duoTrollpick[1].lane = lane
+            document.getElementById(lane).setAttribute("onclick", "deselectDuoLane('" + lane + "')");
+            laneFull = 1;
+        }
+    }
+}
+
+function deselectDuoLane(lane){
+    laneFull = 0
+    document.getElementById(lane).style.border = "none";
+    document.getElementById(lane).setAttribute("onclick", "catchDuoLane('" + lane + "')");
+    if (duoTrollpick[0].lane == lane){
+        duoTrollpick[0].lane = "";
+        laneP = 0;
+    }else if(duoTrollpick[1].lane == lane){
+        duoTrollpick[1].lane = "";
+        laneP = 1;
+    }
+}
+
+function catchDuoSummoner(summoner){
+
+}
+
+function catchDuoSpell(row, column, champion){
+
+    let spell = [];
+
+    if (duoTrollpick[champion.substr(9, 1)]['spell'] != ""){
+        spell = duoTrollpick[champion.substr(9, 1)]['spell'];
+    }
+    
+    if (spell[column] == undefined){
+
+    spell[column] = document.getElementById("column_" + row).innerHTML;
+    document.getElementById("spellRow_" + row + "&Column_" + column).innerHTML = column + 1;
+    document.getElementById("spellRow_" + row + "&Column_" + column)
+        .setAttribute("onclick", "deselectDuoSpell(" + row + ", " + column + ", '" + champion + "')")
+    duoTrollpick[champion.substr(9, 1)]['spell'] = spell;
+    }
+    
+}
+
+function deselectDuoSpell(row, column, champion){
+    
+    let spell = duoTrollpick[champion.substr(9, 1)]['spell'];
+
+    if (spell[column] != undefined){
+        spell[column] = undefined;
+        document.getElementById("spellRow_" + row + "&Column_" + column).innerHTML = " ";
+        document.getElementById("row_" + row + "&column_" + column)
+            .setAttribute("onclick", "catchDuoSpell('" + row + ", " + column + ", " + champion + "')")
+        duoTrollpick[champion.substr(9, 1)]['spell'] = spell;
     }
 }
