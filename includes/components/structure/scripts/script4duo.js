@@ -17,8 +17,7 @@ function chargefirstRune_0(category) {
     fetch("/api/apiRune_0.php", {
         method: "POST",
         headers: {"Content-type": "application/x-www-form-urlencoded" },
-        body: "search=" + category,
-        body: "champion=" + "lilia"
+        body: "search=" + category
     }).then(function (response) {
         return response.text();
     }).then(function (response) {
