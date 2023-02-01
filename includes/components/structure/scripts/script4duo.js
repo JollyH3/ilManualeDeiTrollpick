@@ -14,11 +14,15 @@ function chargefirstRune_0(category) {
     removedRune_0 = document.getElementById("secondRune_" + category + "_0").innerHTML;
     document.getElementById("secondRune_" + category + "_0").innerHTML = "";
 
+    let data = {
+        category: category,
+        champion: 0,
+    };
+
     fetch("/api/apiRune_0.php", {
         method: "POST",
-        headers: {"Content-type": "application/x-www-form-urlencoded" },
-        body: "search=" + category,
-        body: "champion=" + "lilia"
+        headers: {"Content-type": "application/json"},
+        body: JSON.stringify(data)
     }).then(function (response) {
         return response.text();
     }).then(function (response) {

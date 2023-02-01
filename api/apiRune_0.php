@@ -4,9 +4,10 @@ $sql = "SElECT * FROM rune ORDER BY category, position";
 $result = $conn->query($sql);
 $data = $result->fetch_all(MYSQLI_ASSOC);
 
-$category = $_POST['search'];
+$dataIn = json_decode(file_get_contents('php://input'), true);
+$category = $dataIn['category'];
+$champion = $dataIn['champion'];
 ?>
-
 <?php if ($category == "Determinazione"): ?>
 <div class="col py-2">
     <div class="row py-2 justify-content-center">
