@@ -63,10 +63,15 @@ function chargeFirstRune_1(category){
     removedRune_1 = document.getElementById("secondRune_" + category + "_1").innerHTML;
     document.getElementById("secondRune_" + category + "_1").innerHTML = "";
 
+    let data = {
+        category: category,
+        champion: 1,
+    };
+
     fetch("/api/apiRune_0.php", {
         method: "POST",
-        headers: {"Content-type": "application/x-www-form-urlencoded" },
-        body: "search=" + category
+        headers: {"Content-type": "application/json" },
+        body: JSON.stringify(data)
     }).then(function (response) {
         return response.text();
     }).then(function (response) {

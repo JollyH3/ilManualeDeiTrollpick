@@ -218,7 +218,10 @@ let duoTrollpick = [{
     name: "",
     champion: "",
     lane: "",
-    rune: "",
+    rune: {
+        firstRune: "",
+        secondRune: "",
+        },
     sBonus: "",
     summoner: "",
     item: "",
@@ -227,7 +230,10 @@ let duoTrollpick = [{
     name: "",
     champion: "",
     lane: "",
-    rune: "",
+    rune: {
+        firstRune: "",
+        secondRune: "",
+        },
     sBonus: "",
     summoner: "",
     item: "",
@@ -296,6 +302,21 @@ function deselectDuoLane(lane){
     }else if(duoTrollpick[1].lane == lane){
         duoTrollpick[1].lane = "";
         laneP = 1;
+    }
+}
+
+function catchDuoFirstRune(rune_id, champion, row){
+
+    let rune = [];
+    if (duoTrollpick[champion]['rune']['firstRune'] != ""){
+        rune = duoTrollpick[champion]['rune']['firstRune'];
+    }
+
+    if (rune[row] == undefined){
+        rune[row] = rune_id;
+        document.getElementById("rune_" + rune_id).style.border = "2px solid blue";
+        document.getElementById("rune_" + rune_id).setAttribute("onclick", "deselectDuoFirstRune(" + rune_id + ", " + champion + ", " + row + ")");
+        duoTrollpick[champion]['rune']['firstRune'] = rune;
     }
 }
 
