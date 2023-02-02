@@ -10,6 +10,7 @@ $champion = $dataIn['champion'];
 $z = 0;
 $jolly = 0;
 ?>
+
 <?php if ($category == "Determinazione"): ?>
     <div class="col py-2">
         <?php for($i = 0; $i < 4; $i++): ?>
