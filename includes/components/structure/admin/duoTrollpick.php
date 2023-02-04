@@ -1,3 +1,12 @@
+<?php
+    $lane = [
+        "top",
+        "jungle",
+        "mid",
+        "bot",
+        "support"
+    ];
+?>
 <html data-bs-theme = "dark">
 <head>
     <?php include "includes/components/structure/head.php"; ?>
@@ -32,6 +41,8 @@
                                 <a id="<?="champion_" . $data[$i]["champion_id"]?>" onclick="catchDuoChampion('<?=$data[$i]["champion_id"]?>')">
                                     <div class="card border-0 m-1 mb-1 bg-transparent" style="width: 4rem;">
                                         <img src="<?=$data[$i]["image"]?>" class="card-img-top rounded" alt="<?=$data[$i]["name"]?>">
+                                        <div id="<?= 'badge_champion_' . $data[$i]['champion_id'];?>">
+                                        </div>
                                         <div class="card-body  p-1">
                                             <p class="card-text text-white text-center text-uppercase fw-bold" style="font-size: 8px"><?=$data[$i]["name"]?></p>
                                         </div>
@@ -51,21 +62,12 @@
                 <div id="collapseTwo" class="accordion-collapse collapse  " aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="d-flex flex-wrap justify-content-center">
-                            <div class="m-2" id="top" onclick="catchDuoLane('top')">
-                                <img src="assets/img/top.png" alt="top" >
+                            <?php for($i = 0; $i < 5; $i++): ?>
+                            <div id="<?= $lane[$i];?>" class="card border-0 m-2 p-1" style="width: 7 rem;" onclick="catchDuoLane('<?= $lane[$i]?>')">
+                                <img src="<?= 'assets/img/' . $lane[$i] . '.png';?>" class="card-img-top" alt="<?= $lane[$i];?>">
+                                <div id="<?= 'badge_lane_' . $lane[$i];?>"></div>
                             </div>
-                            <div class="m-2" id="jungle" onclick="catchDuoLane('jungle')">
-                                <img src="assets/img/jungle.png" alt="jungle" >
-                            </div>
-                            <div class="m-2" id="mid" onclick="catchDuoLane('mid')">
-                                <img src="assets/img/mid.png" alt="mid" >
-                            </div>
-                            <div class="m-2" id="bot" onclick="catchDuoLane('bot')">
-                                <img src="assets/img/bot.png" alt="bot" >
-                            </div>
-                            <div class="m-2" id="support" onclick="catchDuoLane('support')">
-                                <img src="assets/img/support.png" alt="support" >
-                            </div>
+                            <?php endfor;?>
                         </div>
                     </div>
                 </div>

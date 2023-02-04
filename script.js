@@ -243,25 +243,34 @@ let championP = 0;
 let full = 0;
 
 function catchDuoChampion(champion) {
+
+    let number = 0;
     if (full) {
 
     } else {
-        document.getElementById("champion_" + champion).style.border = "4px solid green";
         if (championP == 0) {
             championP++;
             duoTrollpick[0].champion = champion;
             document.getElementById("champion_" + champion).setAttribute("onclick", "deselectDuoChampion(" + champion + ")");
+            number = 1;
         } else {
             championP--;
             duoTrollpick[1].champion = champion
             document.getElementById("champion_" + champion).setAttribute("onclick", "deselectDuoChampion(" + champion + ")");
             full = 1;
+            number = 2;
         }
+        document.getElementById("badge_champion_" + champion).innerHTML = `
+            <span class="position-absolute bottom-0 start-100 translate-middle badge rounded-pill bg-primary">
+            ${number}
+            <span class="visually-hidden">champion</span>
+            </span>
+            `;
     }
 }
 function deselectDuoChampion(champion){
     full = 0
-    document.getElementById("champion_" + champion).style.border = "none";
+    document.getElementById("badge_champion_" + champion).innerHTML = "";
     document.getElementById("champion_" + champion).setAttribute("onclick", "catchDuoChampion(" + champion + ")");
     if (duoTrollpick[0].champion == champion){
         duoTrollpick[0].champion = "";
@@ -276,25 +285,34 @@ let laneP = 0;
 let laneFull;
 
 function catchDuoLane(lane) {
+
+    let number = 0;
     if (laneFull) {
     } else {
-        document.getElementById(lane).style.border = "4px solid green";
         if (laneP == 0) {
             laneP++;
             duoTrollpick[0].lane = lane;
             document.getElementById(lane).setAttribute("onclick", "deselectDuoLane('" + lane + "')");
+            number = 1;
         } else {
             laneP--;
             duoTrollpick[1].lane = lane
             document.getElementById(lane).setAttribute("onclick", "deselectDuoLane('" + lane + "')");
             laneFull = 1;
+            number = 2;
         }
+        document.getElementById("badge_lane_" + lane).innerHTML = `
+            <span class="position-absolute bottom-0 start-100 translate-middle badge rounded-pill bg-primary">
+            ${number}
+            <span class="visually-hidden">champion</span>
+            </span>
+            `;
     }
 }
 
 function deselectDuoLane(lane){
     laneFull = 0
-    document.getElementById(lane).style.border = "none";
+    document.getElementById("badge_lane_" + lane).innerHTML = "";
     document.getElementById(lane).setAttribute("onclick", "catchDuoLane('" + lane + "')");
     if (duoTrollpick[0].lane == lane){
         duoTrollpick[0].lane = "";
@@ -314,10 +332,23 @@ function catchDuoFirstRune(rune_id, champion, row){
 
     if (rune[row] == undefined){
         rune[row] = rune_id;
-        document.getElementById("rune_" + rune_id).style.border = "2px solid blue";
+        document.getElementById("rune_image_" + rune_id).style.filter = "";
         document.getElementById("rune_" + rune_id).setAttribute("onclick", "deselectDuoFirstRune(" + rune_id + ", " + champion + ", " + row + ")");
         duoTrollpick[champion]['rune']['firstRune'] = rune;
     }
+}
+
+function deselectDuoFirstRune(rune_id, champion, row){
+
+    let rune = duoTrollpick[champion]['rune']['firstRune'];
+
+    if (rune[row] != undefined){
+        rune[row] = undefined;
+        document.getElementById("rune_image_" + rune_id).style.filter = "grayscale(100%)";
+        document.getElementById("rune_" + rune_id).setAttribute("onclick", "catchDuoFirstRune(" + rune_id + ", " + champion + ", " + row + ")");
+        duoTrollpick[champion]['rune']['firstRune'] = rune;
+    }
+
 }
 
 function catchDuoSummoner(summoner){
