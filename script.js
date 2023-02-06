@@ -351,14 +351,76 @@ function deselectDuoFirstRune(rune_id, champion, row){
 
 }
 
-function catchDuoSummoner(summoner){
+function catchDuoSecondRune(rune_id, champion, row) {
 
+    let rune = [];
+    if (duoTrollpick[champion]['rune']['secondRune'] != ""){
+        rune = duoTrollpick[champion]['rune']['secondRune'];
+    }
+
+    if (rune[row] == undefined){
+        rune[row] = rune_id;
+        document.getElementById("rune_image_" + rune_id).style.filter = "";
+        document.getElementById("rune_" + rune_id).setAttribute("onclick", "deselectDuoSecondRune(" + rune_id + ", " + champion + ", " + row + ")");
+        duoTrollpick[champion]['rune']['secondRune'] = rune;
+    }
+}
+
+function deselectDuoSecondRune(rune_id, champion, row){
+
+    let rune = duoTrollpick[champion]['rune']['secondRune'];
+
+    if (rune[row] != undefined){
+        rune[row] = undefined;
+        document.getElementById("rune_image_" + rune_id).style.filter = "grayscale(100%)";
+        document.getElementById("rune_" + rune_id).setAttribute("onclick", "catchDuoSecondRune(" + rune_id + ", " + champion + ", " + row + ")");
+        duoTrollpick[champion]['rune']['secondRune'] = rune;
+    }
+
+}
+
+color = ["primary", "info"]
+function catchDuoSummoner(summoner_id, champion){
+
+    let summoner = [];
+    let number = 0;
+    if(duoTrollpick[champion]['summoner'] == ""){
+        number = 1;
+        summoner[0] = summoner_id;
+        document.getElementById(summoner_id).setAttribute("onclick", "deselectDuoSummoner(" + summoner_id + ", " + champion + ")");
+        document.getElementById("badge_" + summoner_id).innerHTML = `
+        <span class="position-absolute bottom-0 start-100 translate-middle badge rounded-pill bg-${color[champion]}">
+        ${number}
+        <span class="visually-hidden">champion</span>
+        </span>
+        `;
+        duoTrollpick[champion]['summoner'] = summoner;
+    }else if(duoTrollpick[champion]['summoner'][0] != undefined){
+        number = 2;
+        summoner[1] = summoner_id;
+        document.getElementById(summoner_id).setAttribute("onclick", "deselectDuoSummoner(" + summoner_id + ", " + champion + ")");
+        document.getElementById("badge_" + summoner_id).innerHTML = `
+        <span class="position-absolute bottom-0 start-100 translate-middle badge rounded-pill bg-${color[champion]}">
+        ${number}
+        <span class="visually-hidden">champion</span>
+        </span>
+        `;
+        duoTrollpick[champion]['summoner'] = summoner;
+    }
+
+    
+}
+
+function deselectDuoSummoner(summoner_id, champion){
+
+    let summoner = duoTrollpick[champion]['summoner'];
+
+    let index = summoner.replace(summoner_id, "")
 }
 
 function catchDuoSpell(row, column, champion){
 
     let spell = [];
-
     if (duoTrollpick[champion.substr(9, 1)]['spell'] != ""){
         spell = duoTrollpick[champion.substr(9, 1)]['spell'];
     }

@@ -29,6 +29,8 @@ function chargefirstRune_0(category) {
         document.getElementById("firstRune_0").innerHTML = response;
     });
 
+    duoTrollpick[0]['rune']['firstRune'] = [];
+
 }
 function chargeSecondRune_0(category){
     if(removedRune_0 == firstRune_0 || removedRune_0 != category) {
@@ -50,6 +52,8 @@ function chargeSecondRune_0(category){
     }).then(function (response) {
         document.getElementById("secondRune_0").innerHTML = response;
     });
+
+    duoTrollpick[0]['rune']['secondRune'] = [];
 }
 
 let firstRune_1;
@@ -82,6 +86,8 @@ function chargeFirstRune_1(category){
     }).then(function (response) {
         document.getElementById("firstRune_1").innerHTML = response;
     });
+
+    duoTrollpick[1]['rune']['firstRune'] = [];
 }
 
 function chargeSecondRune_1(category){
@@ -104,6 +110,8 @@ function chargeSecondRune_1(category){
     }).then(function (response) {
         document.getElementById("secondRune_1").innerHTML = response;
     });
+
+    duoTrollpick[1]['rune']['secondRune'] = [];
 }
 
 function chargeSummoner(champion){
