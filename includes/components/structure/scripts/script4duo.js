@@ -126,16 +126,25 @@ function chargeSummoner(champion){
     });
 }
 
-function chargeItem(champion){
+function chargeItem(role, champion){
+
+    let data = {
+        role: role,
+        champion: champion
+    }
     fetch("/api/apiItem.php", {
         method: "POST",
-        headers: {"Content-type": "application/x-www-form-urlencoded" },
-        body: "search=" + champion
+        headers: {"Content-type": "application/json" },
+        body: JSON.stringify(data)
     }).then(function (response) {
         return response.text();
     }).then(function (response) {
         document.getElementById("item").innerHTML = response;
     });
+}
+
+function chargeDefaultItemInterface(){
+    
 }
 
 function chargeSpell(champion) {
@@ -177,3 +186,4 @@ function chargeSelectedSpell(champion){
         }
     }
 }
+

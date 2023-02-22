@@ -110,24 +110,14 @@
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingFive">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" onclick="chargeDefaultItemInterface()">
                         Item
                     </button>
                 </h2>
                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="d-flex flex-wrap justify-content-center">
-                        <div class="container text-center m-4">
-                            <div class="row">
-                                <div class="col">
-                                    <button type="button" class="btn btn-primary btn-lg btn-warning" onclick="chargeItem('champion_0')">Champion 1</button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-secondary btn-lg btn-warning" onclick="chargeItem('champion_1')">Champion 2</button>
-                                </div>
-                            </div>
-                            </div>
-                            <div id="item">
+                            <div class="container text-center m-4">
                             </div>
                         </div>
                     </div>
