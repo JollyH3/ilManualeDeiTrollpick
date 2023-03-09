@@ -12,21 +12,17 @@ $dataIn = json_decode(file_get_contents('php://input'), true);
 $role = $dataIn['role'];
 $champion = $dataIn['champion'];
 
-$item_child = [];
-for ($j = 0; $j <count($item_build); $j++) {
-    $item_child[$j] = $item_build[$j]['child_item_id'];
-}
-$item_parent = [];
-for ($j = 0; $j <count($item_build); $j++) {
-    $item_parent[$j] = $item_build[$j]['parent_item_id'];
+$item_tags = [];
+for ($i = 0; $i < count($item); $i++){
+    $item_tags[$i] = json_decode($item[$i]['tags']);  
 }
 ?>
-<?php if($role == "everything"): ?>
+<?php if($role == "Everything"): ?>
     <div class="p-2" id="start_item">
         <h4 class="text-uppercase text-danger">start</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (!in_array($item[$i]['item_id'], $item_parent) && json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['maps'], true)['11'] == true && json_decode($item[$i]['gold'], true)['base'] != 0 && !in_array('Consumable', json_decode($item[$i]['tags'], true)) && !in_array('Boots', json_decode($item[$i]['tags'], true)) && in_array('Lane', json_decode($item[$i]['tags'], true)) && $item[$i]['item_id'] != 1040 && $item[$i]['item_id'] != 1036 || in_array('Jungle', json_decode($item[$i]['tags'], true)) && !in_array('Consumable', json_decode($item[$i]['tags'], true)) && $item[$i]['item_id'] != 1040 && json_decode($item[$i]['gold'], true)['base'] != 0 && json_decode($item[$i]['gold'], true)['purchasable'] == true):?>
+                    <?php if (in_array('Start', $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -38,7 +34,7 @@ for ($j = 0; $j <count($item_build); $j++) {
         <h4 class="text-uppercase text-danger">potions</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['maps'], true)['11'] == true && json_decode($item[$i]['gold'], true)['base'] != 0 && in_array('Consumable', json_decode($item[$i]['tags'], true)) && $item[$i]['item_id'] != 2055):?>
+                    <?php if (in_array('Potions', $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -50,7 +46,7 @@ for ($j = 0; $j <count($item_build); $j++) {
             <h4 class="text-uppercase text-danger">basic</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (!in_array($item[$i]['item_id'], $item_parent) && json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['maps'], true)['11'] == true && json_decode($item[$i]['gold'], true)['base'] != 0 && !in_array('Consumable', json_decode($item[$i]['tags'], true)) && !in_array('Boots', json_decode($item[$i]['tags'], true)) && !in_array('Lane', json_decode($item[$i]['tags'], true)) && !in_array('Jungle', json_decode($item[$i]['tags'], true)) && $item[$i]['item_id'] != 4638 && $item[$i]['item_id'] != 2421 || $item[$i]['item_id'] == 1036):?>
+                    <?php if (in_array('Basic', $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -62,7 +58,7 @@ for ($j = 0; $j <count($item_build); $j++) {
         <h4 class="text-uppercase text-danger">boots</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (in_array('Boots', json_decode($item[$i]['tags'], true)) && json_decode($item[$i]['gold'], true)['purchasable'] == true):?>
+                    <?php if (in_array('Boots', $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -74,7 +70,7 @@ for ($j = 0; $j <count($item_build); $j++) {
         <h4 class="text-uppercase text-danger">epic</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (in_array($item[$i]['item_id'], $item_parent) && json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['gold'], true)['total'] > 690 && json_decode($item[$i]['gold'], true)['total'] < 1500 && !in_array('Boots', json_decode($item[$i]['tags'], true))):?>
+                    <?php if (in_array('Epic', $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -86,7 +82,7 @@ for ($j = 0; $j <count($item_build); $j++) {
         <h4 class="text-uppercase text-danger">legendary</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (!in_array($item[$i]['item_id'], $item_child) && json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['gold'], true)['total'] > 1000 && json_decode($item[$i]['gold'], true)['total'] < 3800 && !in_array('Boots', json_decode($item[$i]['tags'], true))):?>
+                    <?php if (in_array('Legendary', $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -98,7 +94,7 @@ for ($j = 0; $j <count($item_build); $j++) {
             <h4 class="text-uppercase text-danger">mythic items</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (in_array($item[$i]['item_id'], $item_child) && json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['gold'], true)['total'] > 2000 && json_decode($item[$i]['gold'], true)['total'] < 3800 && !in_array('Boots', json_decode($item[$i]['tags'], true))):?>
+                    <?php if (in_array('Mythic', $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -106,12 +102,12 @@ for ($j = 0; $j <count($item_build); $j++) {
                 <?php endfor;?>
             </div>
         </div>
-<?php elseif($role == "fighter"):?>
+<?php else:?>
     <div class="p-2" id="start_item">
         <h4 class="text-uppercase text-danger">start</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (!in_array($item[$i]['item_id'], $item_parent) && json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['maps'], true)['11'] == true && json_decode($item[$i]['gold'], true)['base'] != 0 && !in_array('Consumable', json_decode($item[$i]['tags'], true)) && !in_array('Boots', json_decode($item[$i]['tags'], true)) && in_array('Lane', json_decode($item[$i]['tags'], true)) && $item[$i]['item_id'] != 1040 && $item[$i]['item_id'] != 1036 && in_array('Damage', json_decode($item[$i]['tags'], true)) || in_array('Jungle', json_decode($item[$i]['tags'], true)) && !in_array('Consumable', json_decode($item[$i]['tags'], true)) && $item[$i]['item_id'] != 1040 && json_decode($item[$i]['gold'], true)['base'] != 0 && json_decode($item[$i]['gold'], true)['purchasable'] == true && in_array('Damage', json_decode($item[$i]['tags'], true))):?>
+                    <?php if (in_array($role, $item_tags[$i]) && in_array("Start", $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -123,7 +119,7 @@ for ($j = 0; $j <count($item_build); $j++) {
             <h4 class="text-uppercase text-danger">basic</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (!in_array($item[$i]['item_id'], $item_parent) && json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['maps'], true)['11'] == true && json_decode($item[$i]['gold'], true)['base'] != 0 && !in_array('Consumable', json_decode($item[$i]['tags'], true)) && !in_array('Boots', json_decode($item[$i]['tags'], true)) && !in_array('Lane', json_decode($item[$i]['tags'], true)) && !in_array('Jungle', json_decode($item[$i]['tags'], true)) && $item[$i]['item_id'] != 4638 && $item[$i]['item_id'] != 2421  && in_array('Damage', json_decode($item[$i]['tags'], true)) || $item[$i]['item_id'] == 1036 && in_array('Damage', json_decode($item[$i]['tags'], true))):?>
+                    <?php if (in_array($role, $item_tags[$i]) && in_array("Basic", $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -135,7 +131,7 @@ for ($j = 0; $j <count($item_build); $j++) {
         <h4 class="text-uppercase text-danger">boots</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (in_array('Boots', json_decode($item[$i]['tags'], true)) && json_decode($item[$i]['gold'], true)['purchasable'] == true):?>
+                    <?php if (in_array("Boots", $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -147,7 +143,7 @@ for ($j = 0; $j <count($item_build); $j++) {
         <h4 class="text-uppercase text-danger">epic</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (in_array($item[$i]['item_id'], $item_parent) && json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['gold'], true)['total'] > 690 && json_decode($item[$i]['gold'], true)['total'] < 1500 && !in_array('Boots', json_decode($item[$i]['tags'], true)) && in_array('Damage', json_decode($item[$i]['tags'], true))):?>
+                    <?php if (in_array($role, $item_tags[$i]) && in_array("Epic", $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -155,11 +151,11 @@ for ($j = 0; $j <count($item_build); $j++) {
                 <?php endfor;?>
             </div>
         </div>
-        <div class="p-2" id="boots_item">
+        <div class="p-2" id="legendary_item">
         <h4 class="text-uppercase text-danger">legendary</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (!in_array($item[$i]['item_id'], $item_child) && json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['gold'], true)['total'] > 1000 && json_decode($item[$i]['gold'], true)['total'] < 3800 && !in_array('Boots', json_decode($item[$i]['tags'], true)) && in_array('Damage', json_decode($item[$i]['tags'], true))):?>
+                    <?php if (in_array($role, $item_tags[$i]) && in_array("Legendary", $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>
@@ -167,11 +163,11 @@ for ($j = 0; $j <count($item_build); $j++) {
                 <?php endfor;?>
             </div>
         </div>
-        <div class="p-2" id="boots_item">
+        <div class="p-2" id="mythic_item">
             <h4 class="text-uppercase text-danger">mythic items</h4>
             <div class="d-flex flex-wrap justify-content-start m-3">
                 <?php for ($i = 0; $i < count($item); $i++): ?>
-                    <?php if (in_array($item[$i]['item_id'], $item_child) && json_decode($item[$i]['gold'], true)['purchasable'] == true && json_decode($item[$i]['gold'], true)['total'] > 2000 && json_decode($item[$i]['gold'], true)['total'] < 3800 && !in_array('Boots', json_decode($item[$i]['tags'], true)) && in_array('Damage', json_decode($item[$i]['tags'], true))):?>
+                    <?php if (in_array($role, $item_tags[$i]) && in_array("Mythic", $item_tags[$i])):?>
                         <div id="<?= $item[$i]['item_id'];?>" class="card" style="width: 4rem;">
                             <img src="<?= $item[$i]['image'];?>" class="card-img-top" alt="<?= $item[$i]['name'];?>">
                         </div>

@@ -13,6 +13,10 @@ $data = $data['data'];
 
 foreach ($data as $item_id => $item) {
 
+	if (isset($item['depth'])) {
+		array_push($item['tags'], $item['depth']);
+	}
+
 	$stmt = $pdo->prepare("INSERT IGNORE INTO item VALUES(:item_id, :name, :image, :gold, :description, :stats, :tags, :maps, :version);");
 	$stmt->execute([
 		'item_id' => intval($item_id),

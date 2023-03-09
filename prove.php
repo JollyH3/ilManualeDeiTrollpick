@@ -44,13 +44,13 @@ $item_build = $result->fetch_all(MYSQLI_ASSOC);
                                                 "https://static.wikia.nocookie.net/leagueoflegends/images/5/5a/Tank_icon.png",
                                                 "https://static.wikia.nocookie.net/leagueoflegends/images/5/58/Controller_icon.png"
                                                 ];
-                                        $role = ["everything",
-                                                 "fighter",
-                                                 "marksman",
-                                                 "slayer",
-                                                 "mage",
-                                                 "tank",
-                                                 "controller"];
+                                        $role = ["Everything",
+                                                 "Fighter",
+                                                 "Marksman",
+                                                 "Slayer",
+                                                 "Mage",
+                                                 "Tank",
+                                                 "Controller"];
                                         $item_child = [];
                                         for ($j = 0; $j <count($item_build); $j++) {
                                             $item_child[$j] = $item_build[$j]['child_item_id'];
